@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "axios"; 
 import React, { useState } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { motion } from "framer-motion";
@@ -7,8 +7,7 @@ import Editor from "@monaco-editor/react";
 import Macbook from "../../assets/macbook.svg";
 import Below from "../../assets/below.svg";
 function Compiler() {
-  const onChange = React.useCallback((value, viewUpdate) => {
-    // console.log("value:", value);
+  const onChange = React.useCallback((value, viewUpdate) => { 
     setCode(value);
   }, []);
   function handleEditorChange(value, event) {
@@ -41,30 +40,10 @@ function Compiler() {
           },
         }
       );
-      console.log(datanew.data.jobId); 
-      setResponse(datanew?.data);
+      console.log(datanew?.data.output); 
+      setResponse(datanew?.data.output);
       
-      
-      intervalId=   setInterval( async() => {
-     
-        const datanew2=axios.get("http://localhost:3001/status",{params:{id:datanew?.data?.jobId}})
-        console.log(datanew2);
-        const {success,job,error}=datanew2;
-        if(success){
-            const{status:jobStatus,output:jobOutput}=job;
-            setStatus(jobStatus);
-            if(jobStatus==="pending"){
-               return 
-            }
-            setResponse(jobOutput); 
-            clearInterval(intervalId);
-        }
-        else{
-            console.log(error);
-            setResponse(error);
-            clearInterval(intervalId);
-        }
-    }, 1000);
+       
     } catch (err) {
       console.log(err.response);
     }
@@ -105,8 +84,10 @@ function Compiler() {
                   ) : (
                     <>
                     {/* <p>{response}</p> */}
-                    <p>{response?.jobId}</p>
-                    <p>{status}</p>
+                    {/* <p>{response}</p> */}
+                    <p>{response?response:"loading"}</p>
+                    {/* <p>{response===""?"loading":{response}}</p> */}
+                    {/* <p>{status}</p> */}
                     </>
                   )}
                 </div>
