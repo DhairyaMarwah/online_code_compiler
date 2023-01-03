@@ -1,5 +1,6 @@
 import axios from "axios"; 
-import React, { useState } from "react";
+
+import React, { useEffect, useState } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { motion } from "framer-motion";
 import { javascript } from "@codemirror/lang-javascript";
@@ -17,21 +18,31 @@ function Compiler() {
   }
 
   const [data, setData] = useState(null);
+  const [defaultCode, setDefaultCode] = useState("import java.util.*;\npublic class Main {\npublic static void main(String[] args) {\nScanner sc=new Scanner(System.in);\nint n=sc.nextInt();\nSystem.out.println(n);\n}\n}")
   const [code, setCode] = React.useState(null);
+    const [input, setInput] = useState("0");
   const [response, setResponse] = useState("");
-  const [language, setLanguage] = useState("cpp");
+  const [language, setLanguage] = useState("java");
   const [openOutput, setopenOutput] = useState(false); 
   const[status,setStatus]=useState("");
   let intervalId ;
+ 
+
+    //   if(language==="java"){
+    //       setDefaultCode(`import java.util.*;/npublic class Main {/npublic static void main(String[] args) {/nScanner sc=new Scanner(System.in);/nint n=sc.nextInt();/nSystem.out.println(n);/n}/n}`)
+    //     }
+    
   const handleSubmit = async () => {
     const payload = {
       language,
       code,
+      input
     };
     setopenOutput(true); 
     try {
       const  datanew  = await axios.post(
-        "http://localhost:3001/run",
+        // "https://api.regexnatives.in/compiler/run",
+        "http://localhost:8000/run",
         payload,
         {
           headers: {
@@ -45,7 +56,9 @@ function Compiler() {
       
        
     } catch (err) {
-      console.log(err.response);
+        console.log(err.response.data.err.stderr)
+      console.log(err.response.data.err.stderr.toLowerCase().slice(err.response.data.err.stderr.toLowerCase().indexOf("error"),err.response.data.err.stderr.toLowerCase().lastIndexOf("generated")));
+      setResponse(err.response.data.err.stderr.toLowerCase().slice(err.response.data.err.stderr.toLowerCase().indexOf("error"),err.response.data.err.stderr.toLowerCase().lastIndexOf("generated")))
     }
   };
   console.log(response); 
@@ -58,14 +71,19 @@ function Compiler() {
     javaScript: "js",
 
   }
+  console.log(defaultCode);
+  useEffect(() => {}, [language]);
   return (
     <>
     <div className="new-component">
 
     
      </div>
+
       <div className="Compiler">
         <h1>Powerful, Fast, and Easy-to-Use Code Compiler</h1>
+        <div className="editor-flex">
+            
         <motion.div
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -82,12 +100,8 @@ function Compiler() {
                   {response === null ? (
                     <p>There is some error</p>
                   ) : (
-                    <>
-                    {/* <p>{response}</p> */}
-                    {/* <p>{response}</p> */}
-                    <p>{response?response:"loading"}</p>
-                    {/* <p>{response===""?"loading":{response}}</p> */}
-                    {/* <p>{status}</p> */}
+                    <> 
+                    <p>{response?response?.stdout:"loading"}</p> 
                     </>
                   )}
                 </div>
@@ -164,6 +178,7 @@ function Compiler() {
                     <p
                       onClick={() => {
                         setLanguage("java");
+                        setDefaultCode(`import java.util.*;/npublic class Main {/npublic static void main(String[] args) {/nScanner sc=new Scanner(System.in);/nint n=sc.nextInt();/nSystem.out.println(n);/n}/n}`)
                         setOpenLangSelect(false);
                       }}
                       className={language === "java" ? "selected-language" : ""}
@@ -241,7 +256,7 @@ function Compiler() {
      theme="vs-dark"
      defaultLanguage={language}
      language={language}
-     defaultValue="// some comment"
+     defaultValue={language==="java"?defaultCode:"console.log('hello world!');"}
      onChange={handleEditorChange}
      />
             <div className="btns compiler-btn">
@@ -265,15 +280,19 @@ function Compiler() {
             <img src={Below} alt="" />
           </div>
         </motion.div>
-        {/* <textarea
-          onChange={(e) => {
-            setData(e.target.value);
-          }}
-          name=""
-          id=""
-          cols="70"
-          rows="20"
-        ></textarea> */}
+            <div className="input-flex">
+                <div className="input-comp">
+                    <textarea onChange={(e)=>{setInput(e.target.value)}} type="text" placeholder="Input :" />
+                </div>
+                <div className="input-status">
+                    <p>Execution Time : <span>{response?.elapsedTime} sec</span></p>
+                    <p>External Memory  : <span>{response?.memoryUsage?.external} </span></p>
+                </div>
+            </div>
+        
+
+        </div>
+        
       </div>
     </>
   );

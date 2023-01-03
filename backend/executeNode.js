@@ -1,14 +1,24 @@
 const { exec } = require("child_process");
-const executePy = (filepath, input) => {
+const executeNode = (filepath, input) => {
   return new Promise((resolve, reject) => {
     const startTime = process.hrtime();
     let elapsedTime = 0;
     let memoryUsage = 0;
-    const program = exec(`python3 ${filepath} `, (error, stdout, stderr) => {
-      error && reject({ error, stderr });
-      stderr && reject({ stderr });
-      resolve({ elapsedTime, stdout, memoryUsage });
+    console.log(`node ${filepath}`);
+    const program = exec("node", [{ filepath }]);
+
+    // Print the output
+    console.log("stdout:");
+    program.stdout.on("data", (data) => {
+      console.log(`stdout: ${data}`);
     });
+    program.stderr.on("data", (data) => {
+      console.error(`stderr: ${data}`);
+    });
+    program.on("exit", () => {
+      console.log(`stdout: ${program.stdout}`);
+    });
+    // console.log(stdout);
     program.stdin.write(input);
     program.stdin.end();
     program.on("exit", () => {
@@ -26,5 +36,5 @@ const executePy = (filepath, input) => {
 };
 
 module.exports = {
-  executePy,
+  executeNode,
 };

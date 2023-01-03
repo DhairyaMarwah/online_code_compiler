@@ -1,10 +1,11 @@
 const { exec } = require("child_process");
-const executePy = (filepath, input) => {
+const executeJava = (filepath, input) => {
   return new Promise((resolve, reject) => {
     const startTime = process.hrtime();
     let elapsedTime = 0;
     let memoryUsage = 0;
-    const program = exec(`python3 ${filepath} `, (error, stdout, stderr) => {
+    console.log(`javac ${filepath} & java Main`);
+    const program = exec(`java ${filepath}`, (error, stdout, stderr) => {
       error && reject({ error, stderr });
       stderr && reject({ stderr });
       resolve({ elapsedTime, stdout, memoryUsage });
@@ -26,5 +27,5 @@ const executePy = (filepath, input) => {
 };
 
 module.exports = {
-  executePy,
+  executeJava,
 };
