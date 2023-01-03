@@ -7,8 +7,7 @@ import { javascript } from "@codemirror/lang-javascript";
 import Editor from "@monaco-editor/react";
 import Macbook from "../../assets/macbook.svg";
 import NewWindow from 'react-new-window'
-import Below from "../../assets/below.svg";
-import Popup from 'react-popup';
+import Below from "../../assets/below.svg"; 
 const HTMLViewer = ({ html }) => {
     useEffect(() => {
       const viewerWindow = window.open('', 'HTML Viewer', 'width=600,height=400');
