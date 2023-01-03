@@ -60,8 +60,8 @@ function Compiler() {
     setopenOutput(true); 
     try {
       const  datanew  = await axios.post(
-        // "https://api.regexnatives.in/compiler/run",
-        "http://localhost:8000/run",
+        "https://api.regexnatives.in/compiler/run",
+        // "http://localhost:8000/run",
         payload,
         {
           headers: {
