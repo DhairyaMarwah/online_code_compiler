@@ -12,6 +12,7 @@
     "@uiw/react-textarea-code-editor": "^2.0.6",
     "axios": "^1.2.2",
     "framer-motion": "^8.0.2",
+    "lottie-react": "^2.3.1",
     "monaco-themes": "^0.4.3",
     "prismjs": "^1.29.0",
     "react": "^18.2.0",

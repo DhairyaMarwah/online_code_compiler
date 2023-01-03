@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 // import Lottie from "react-lottie";
+import Lottie from "lottie-react";
 import { Routes, Route,Navigate, useNavigate } from "react-router-dom"; 
 import * as animationData from "../../animation/10801-deployment.json";
 import * as animationData2 from "../../animation/109119-coding-slide.json";
@@ -41,7 +42,7 @@ const Home = () => {
           </div>
         </div>
         <div className="lottie">
-          {/* <Lottie options={defaultOptions} /> */}
+          <Lottie animationData={animationData} />
         </div>
       </div>
       <div className="features">
@@ -51,7 +52,7 @@ const Home = () => {
         <p>Our online code compiler supports a wide range of programming languages, including popular ones like C, C++, Java, Python, and Ruby. Whether you're working on a simple script or a complex application, our platform has everything you need to write, test, and debug code in any language</p>
         </div>
         <div className="features-lottie">
-        {/* <Lottie options={defaultOptions2} /> */}
+        <Lottie animationData={animationData2} />
         </div>
       </div>
     </>
