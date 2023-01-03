@@ -16,7 +16,6 @@
     "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-html-renderer": "^0.3.3",
     "react-lottie": "^1.2.3",
     "react-new-window": "^1.0.1",
     "react-popup": "^0.11.0",
