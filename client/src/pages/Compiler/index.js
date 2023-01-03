@@ -1,13 +1,24 @@
 import axios from "axios"; 
-
+import ReactDOM from 'react-dom';
 import React, { useEffect, useState } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { motion } from "framer-motion";
 import { javascript } from "@codemirror/lang-javascript";
 import Editor from "@monaco-editor/react";
 import Macbook from "../../assets/macbook.svg";
+import NewWindow from 'react-new-window'
 import Below from "../../assets/below.svg";
+import Popup from 'react-popup';
+const HTMLViewer = ({ html }) => {
+    useEffect(() => {
+      const viewerWindow = window.open('', 'HTML Viewer', 'width=600,height=400');
+      ReactDOM.render(<HTMLViewer html={html} />, viewerWindow.document.body);
+    }, []);
+  
+    return <div dangerouslySetInnerHTML={{ __html: html }} />;
+  };
 function Compiler() {
+     
   const onChange = React.useCallback((value, viewUpdate) => { 
     setCode(value);
   }, []);
@@ -15,7 +26,7 @@ function Compiler() {
     console.log("here is the current model value:", value);
     setCode(value);
 
-  }
+  } 
 
   const [data, setData] = useState(null);
   const [defaultCode, setDefaultCode] = useState("import java.util.*;\npublic class Main {\npublic static void main(String[] args) {\nScanner sc=new Scanner(System.in);\nint n=sc.nextInt();\nSystem.out.println(n);\n}\n}")
@@ -32,12 +43,21 @@ function Compiler() {
     //       setDefaultCode(`import java.util.*;/npublic class Main {/npublic static void main(String[] args) {/nScanner sc=new Scanner(System.in);/nint n=sc.nextInt();/nSystem.out.println(n);/n}/n}`)
     //     }
     
+    const [html, setHTML] = React.useState('');
+
+  const handleSubmit2 = (event) => {
+    // event.preventDefault();
+    console.log(event);
+    setHTML(event);
+    
+  };
   const handleSubmit = async () => {
-    const payload = {
-      language,
-      code,
-      input
-    };
+      const payload = {
+        language,
+        code,
+        input
+      };
+    if(language!="html"){
     setopenOutput(true); 
     try {
       const  datanew  = await axios.post(
@@ -60,6 +80,10 @@ function Compiler() {
       console.log(err.response.data.err.stderr.toLowerCase().slice(err.response.data.err.stderr.toLowerCase().indexOf("error"),err.response.data.err.stderr.toLowerCase().lastIndexOf("generated")));
       setResponse(err.response.data.err.stderr.toLowerCase().slice(err.response.data.err.stderr.toLowerCase().indexOf("error"),err.response.data.err.stderr.toLowerCase().lastIndexOf("generated")))
     }
+}
+else{
+    handleSubmit2(code);
+}
   };
   console.log(response); 
   const [openLangSelect, setOpenLangSelect] = useState(false);
@@ -76,7 +100,7 @@ function Compiler() {
   return (
     <>
     <div className="new-component">
-
+     
     
      </div>
 
