@@ -540,6 +540,12 @@ button {
   }
 }
 @media (max-width:500px){
+  .landing-text h1, .features h1{
+    margin-top: 2.4rem;
+  }
+  .navbar{
+    margin-top: 1.5rem;
+  }
   .about-page p{
     padding: 0 1rem;
   }
