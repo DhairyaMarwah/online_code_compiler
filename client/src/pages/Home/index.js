@@ -38,7 +38,7 @@ const Home = () => {
           </p>
           <div className="btns">
             <button onClick={()=>{ navigate("/compiler") }} className="primary-btn">Get Started</button>
-            <button className="secondary-btn">Read More</button>
+            <button onClick={()=>{ navigate("/about") }} className="secondary-btn">Read More</button>
           </div>
         </div>
         <div className="lottie">

@@ -60,7 +60,7 @@ body {
   letter-spacing: -0.03em;
   color: #ffffff;
 }
-.landing-text p,
+.landing-text p,.about-page p,
 .features p {
   font-weight: 500;
   font-size: 26px;
@@ -177,7 +177,7 @@ body {
 .App textarea {
   background-color: #fff !important;
 }
-.Compiler h1 {
+.Compiler h1,.about-page h1 {
   font-weight: 700;
   font-size: 45.2px;
   line-height: 56px;
@@ -481,4 +481,62 @@ button {
   display: block;
   height: 41px;
   border-radius: 6px;
+}
+.about-lottie{
+  width: 50%;margin: 0 auto; 
+}
+.about-page p{
+  padding: 0 10%;font-weight: 500;margin-bottom: 4rem;
+}
+.menu-btn{
+  cursor: pointer;
+}
+@media (max-width:1000px) {
+  .logo svg{
+    width: 180px;
+  }
+  .navbar{
+    position: relative;
+  }
+  .navbar .sidebar{
+    position: absolute;background: #242424;top: 10%;right: 10px;width: 260px;z-index: 4;
+    
+    padding: 2rem  ;
+    box-shadow: 0px 204px 82px rgba(0, 0, 0, 0.01), 0px 115px 69px rgba(0, 0, 0, 0.05), 0px 51px 51px rgba(0, 0, 0, 0.09), 0px 13px 28px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 19px;
+  }
+  .sidebar .nav-links{
+    display: flex;flex-direction: column;align-items: flex-start;gap: 1rem;
+  }
+  .sidebar .nav-links p{
+    cursor: pointer;padding: 1rem; 
+  }
+  .landing-text h1, .features h1{
+    font-size: 36px;line-height: unset;margin-top: 3rem;
+  }
+  .landing-text p, .about-page p, .features p{
+    font-size: 18px;line-height: unset;padding: 0;
+  }
+  .landing-text,.features-text{
+    padding: 0 2rem;
+  }
+  .lottie{
+    top: 0px;
+  }
+   .features-lottie{
+    top: -40px;
+  }
+  .features-lottie{
+    width: 100%;
+  }
+  .footer{
+    flex-direction: column;
+  }
+}
+.logo{
+  cursor: pointer;
+}
+.close-btn{
+  background-color: #424242;
+  border-radius: 8px;width: 100%;
 }
