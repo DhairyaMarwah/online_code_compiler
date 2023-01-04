@@ -532,6 +532,29 @@ button {
   .footer{
     flex-direction: column;
   }
+  .about-lottie{
+    width: 80%;
+  }
+  .about-page p{
+    padding: 0 4rem;
+  }
+}
+@media (max-width:500px){
+  .about-page p{
+    padding: 0 1rem;
+  }
+  .btns button{
+    font-size: 16px;    padding: 8px 23px;
+  }
+  .landing-text h1, .features h1{
+    font-size: 28px;line-height: 38px;
+  }
+  .features h1 {
+    white-space: nowrap;font-size: 30px;
+  }
+  .landing-text p, .about-page p, .features p{
+    font-size: 1rem;
+  }
 }
 .logo{
   cursor: pointer;
