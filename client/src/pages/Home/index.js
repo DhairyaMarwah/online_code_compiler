@@ -31,8 +31,8 @@ const Home = () => {
             Say goodbye to setup headaches with our convenient online compiler
           </h1>
           <p>
-            Our online compiler makes it easy to write, test, and debug code in
-            any language, without the hassle of installing or setting up
+            Our online compiler makes it easy to write and test  code in
+            multiple language, without the hassle of installing or setting up
             anything. Simply start coding and let our powerful platform handle
             the rest.
           </p>
