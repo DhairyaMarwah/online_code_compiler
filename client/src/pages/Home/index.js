@@ -49,7 +49,7 @@ const Home = () => {
         <div className="features-text">
 
         <h1>Languages Supported</h1>
-        <p>Our online code compiler supports a wide range of programming languages, including popular ones like C, C++, Java, Python, and Ruby. Whether you're working on a simple script or a complex application, our platform has everything you need to write, test, and debug code in any language</p>
+        <p>Our online code compiler supports a wide range of programming languages, including popular ones like C, C++, Java, Python, and Ruby. Whether you're working on a simple script or a complex application, our platform has everything you need to write and test code in multiple language</p>
         </div>
         <div className="features-lottie">
         <Lottie animationData={animationData2} />
