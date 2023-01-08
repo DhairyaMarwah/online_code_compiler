@@ -501,7 +501,7 @@ button {
   .navbar .sidebar{
     position: absolute;background: #242424;top: 10%;right: 10px;width: 260px;z-index: 4;
     
-    padding: 2rem  ;
+    padding: 2rem 1rem ;
     box-shadow: 0px 204px 82px rgba(0, 0, 0, 0.01), 0px 115px 69px rgba(0, 0, 0, 0.05), 0px 51px 51px rgba(0, 0, 0, 0.09), 0px 13px 28px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
     border-radius: 19px;
   }
@@ -554,6 +554,9 @@ button {
   }
   .landing-text h1, .features h1{
     font-size: 28px;line-height: 38px;
+  }
+  .landing{
+    width: 100%;
   }
   .features h1 {
     white-space: nowrap;font-size: 30px;

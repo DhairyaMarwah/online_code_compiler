@@ -32,6 +32,8 @@ function Compiler() {
   const [code, setCode] = React.useState(null);
     const [input, setInput] = useState("0");
   const [response, setResponse] = useState("");
+  const [response2, setResponse2] = useState("");
+  
   const [language, setLanguage] = useState("java");
   const [openOutput, setopenOutput] = useState(false); 
   const[status,setStatus]=useState("");
@@ -71,13 +73,15 @@ function Compiler() {
         }
       );
       console.log(datanew?.data.output); 
-      setResponse(datanew?.data.output);
+      setResponse(datanew?.data.output.stdout);
+      setResponse2(datanew?.data.output);
       
        
     } catch (err) {
         console.log(err.response.data.err.stderr)
-      console.log(err.response.data.err.stderr.toLowerCase().slice(err.response.data.err.stderr.toLowerCase().indexOf("error"),err.response.data.err.stderr.toLowerCase().lastIndexOf("generated")));
-      setResponse(err.response.data.err.stderr.toLowerCase().slice(err.response.data.err.stderr.toLowerCase().indexOf("error"),err.response.data.err.stderr.toLowerCase().lastIndexOf("generated")))
+      // console.log(err.response.data.err.stderr.toLowerCase().slice(err.response.data.err.stderr.toLowerCase().indexOf("error"),err.response.data.err.stderr.toLowerCase().lastIndexOf("generated")));
+      // setResponse(err.response.data.err.stderr.toLowerCase().slice(err.response.data.err.stderr.toLowerCase().indexOf("error"),err.response.data.err.stderr.toLowerCase().lastIndexOf("generated")))
+      setResponse(err.response.data.err.stderr)
     }
 }
 else{
@@ -120,13 +124,17 @@ else{
                   <p>Output :</p>
                 </div>
                 <div className="output">
-                  {response === null ? (
+                  {/* {response === null ? (
                     <p>There is some error</p>
                   ) : (
                     <> 
                     <p>{response?response?.stdout:"loading"}</p> 
                     </>
-                  )}
+                  )} */}
+                  <p>
+
+                  {response}
+                  </p>
                 </div>
                 <div className="ok-btn">
                   <button
@@ -308,8 +316,8 @@ else{
                     <textarea onChange={(e)=>{setInput(e.target.value)}} type="text" placeholder="Input :" />
                 </div>
                 <div className="input-status">
-                    <p>Execution Time : <span>{response?.elapsedTime} sec</span></p>
-                    <p>External Memory  : <span>{response?.memoryUsage?.external} </span></p>
+                    <p>Execution Time : <span>{response2?.elapsedTime} sec</span></p>
+                    <p>External Memory  : <span>{response2?.memoryUsage?.external} </span></p>
                 </div>
             </div>
         
